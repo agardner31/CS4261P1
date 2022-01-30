@@ -1,6 +1,10 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'lobby.dart';
+import 'package:flutter_sound/flutter_sound.dart';
 
 void main() {
   runApp(MyApp());
@@ -51,6 +55,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int lastTap = DateTime.now().millisecondsSinceEpoch;
   int consecutiveTaps = 0;
+  FlutterSoundPlayer? _audioPlayer;
+  Future _play() async {
+    String audioAsset = "assets/knock.mp3";
+    ByteData bytes = await rootBundle.load(audioAsset); //load sound from assets
+    Uint8List  soundBytes = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+    _audioPlayer = FlutterSoundPlayer();
+    _audioPlayer!.openPlayer();
+    await _audioPlayer!.startPlayer(
+      fromDataBuffer: soundBytes,
+    );
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
         //background image placement
         GestureDetector(
-          onTap: () {
+          onTap: () async {
+            _play();
             int now = DateTime.now().millisecondsSinceEpoch;
             if (now - lastTap < 1000) {
               print("Consecutive tap");
