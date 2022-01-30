@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:neon/neon.dart';
 import 'lobby.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 
@@ -52,22 +52,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   int lastTap = DateTime.now().millisecondsSinceEpoch;
   int consecutiveTaps = 0;
   FlutterSoundPlayer? _audioPlayer;
+
   Future _play() async {
     String audioAsset = "assets/knock.mp3";
     ByteData bytes = await rootBundle.load(audioAsset); //load sound from assets
-    Uint8List  soundBytes = bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+    Uint8List soundBytes =
+        bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
     _audioPlayer = FlutterSoundPlayer();
     _audioPlayer!.openPlayer();
+    _audioPlayer!.setVolume(200);
     await _audioPlayer!.startPlayer(
       fromDataBuffer: soundBytes,
     );
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -78,44 +78,59 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-        body: new Stack(
-          children: <Widget>[
-        //background image placement
-        GestureDetector(
-          onTap: () async {
-            _play();
-            int now = DateTime.now().millisecondsSinceEpoch;
-            if (now - lastTap < 1000) {
-              print("Consecutive tap");
-              consecutiveTaps ++;
-              print("taps = " + consecutiveTaps.toString());
-            } else {
-              if (consecutiveTaps == 7){
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Lobby();
-                    },
-                  ),
-                );
-              }
-              consecutiveTaps = 0;
-            }
-            lastTap = now;
-          },
-          child: new Container(
-          decoration: new BoxDecoration(
-          image: new DecorationImage(
+        body: new Stack(children: <Widget>[
+      //background image placement
 
-          image: new AssetImage(
-            'assets/TheaterCurtains.jpg',
+      GestureDetector(
+        onTap: () async {
+          _play();
+          int now = DateTime.now().millisecondsSinceEpoch;
+          if (now - lastTap < 1000) {
+            print("Consecutive tap");
+            consecutiveTaps++;
+            print("taps = " + consecutiveTaps.toString());
+          } else {
+            if (consecutiveTaps == 7) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Lobby();
+                  },
+                ),
+              );
+            }
+            consecutiveTaps = 0;
+          }
+          lastTap = now;
+        },
+        child: Stack(children: [
+          new Container(
+            decoration: new BoxDecoration(
+              image: new DecorationImage(
+                image: new AssetImage(
+                  'assets/frontDoor.jpg',
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-          fit: BoxFit.cover,
+          Padding(
+            padding: const EdgeInsets.only(top: 110.0),
+            child: Container(
+              child: Neon(
+                text: 'MetaGallery',
+                color: Colors.cyan,
+                fontSize: 50,
+                font: NeonFont.Membra,
+                flickeringText: true,
+                glowingDuration: const Duration(milliseconds: 150),
+                //flickeringLetters: [0,1,4],
+              ),
+            ),
+          ),
+        ]),
       ),
-    ),
-    ),
-        ),
-    //everything on top of background
+      //everything on top of background
     ]));
   }
 }
