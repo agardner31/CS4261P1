@@ -24,6 +24,8 @@ class LobbySetup extends State<Lobby> {
   int questionNum = 45;
   final AuthService _auth = AuthService();
 
+  String username;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,25 +44,32 @@ class LobbySetup extends State<Lobby> {
           Container(
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 70.00, horizontal: 50.0),
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: 'Name',
+              child: Form(
+                child: Column(
+                  children: [
+                    TextFormField(
+                      onChanged: (val) {
+                        setState(() => username = val);
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Sign Your Name',
+                      ),
                     ),
-                  ),
-                  TextButton(onPressed: () async {
-                    dynamic result = await _auth.signInAnon();
-                    if (result == null) {
-                      print('error signing in');
-                    } else {
-                      print('signed in');
-                      print(result.uid);
-                    }
-                  },
-                      child: Text('Enter Gallery')),
-                ],
+                    ElevatedButton(
+                        onPressed: () async {
+                      dynamic result = await _auth.signInAnon();
+                      if (result == null) {
+                        print('error signing in');
+                      } else {
+                        print('signed in');
+                        print(result.uid);
+
+                      }
+                    },
+                        child: Text('Enter Gallery')),
+                  ],
+                ),
               ),
             ),
           ),
