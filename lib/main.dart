@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
             consecutiveTaps++;
             print("taps = " + consecutiveTaps.toString());
           } else {
-            if (consecutiveTaps == 7) {
+            if (consecutiveTaps >= 7) {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {

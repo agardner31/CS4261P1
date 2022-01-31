@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "26085924358",
+    "project_id": "metagallery-cfa1b",
+    "storage_bucket": "metagallery-cfa1b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26085924358:android:ea29717c5a9838971eed87",
+        "android_client_info": {
+          "package_name": "com.example.anna_app_p1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "26085924358-01ncr3p0eu15g5putlr72a6635qmta4t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeXuMNKZXCqqE0_K0tFNgyxm65TIHTxKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "26085924358-01ncr3p0eu15g5putlr72a6635qmta4t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

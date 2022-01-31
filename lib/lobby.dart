@@ -1,3 +1,4 @@
+import 'package:anna_app_p1/wrapper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,15 +24,28 @@ class LobbySetup extends State<Lobby> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(
-            'assets/TheaterCurtains.jpg',
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/TheaterCurtains.jpg',
+              ),
+              fit: BoxFit.cover,
+            ),
           ),
-          fit: BoxFit.cover,
         ),
-      ),
-    );
+          Container(
+            child: TextFormField(
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Name',
+              ),
+            ),
+          ),
+        ]
+    ));
   }
 }
