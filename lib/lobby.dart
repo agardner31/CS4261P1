@@ -1,3 +1,4 @@
+import 'package:anna_app_p1/services/auth.dart';
 import 'package:anna_app_p1/wrapper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class Lobby extends StatefulWidget {
 class LobbySetup extends State<Lobby> {
   int popUpNum = -1;
   int questionNum = 45;
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +40,27 @@ class LobbySetup extends State<Lobby> {
           ),
         ),
           Container(
-            child: TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Name',
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 70.00, horizontal: 50.0),
+              child: Column(
+                children: [
+                  TextFormField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Name',
+                    ),
+                  ),
+                  TextButton(onPressed: () async {
+                    dynamic result = await _auth.signInAnon();
+                    if (result == null) {
+                      print('error signing in');
+                    } else {
+                      print('signed in');
+                      print(result.uid);
+                    }
+                  },
+                      child: Text('Enter Gallery')),
+                ],
               ),
             ),
           ),
