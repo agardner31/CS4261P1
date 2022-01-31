@@ -13,6 +13,6 @@
 2. I sketched a simple storyboard for my idea, making sure to include the required functionalities. ![alt text](https://github.com/agardner31/CS4261P1/blob/master/storyboard.jpg)
 3. Then I set up a simple homepage and lobby for my Virtual Gallery app and pushed this to GitHub :)  
 4. The next functionality was a 7-knock requirement to enter the first door of the app and to also add a knock sound to this tap action: https://stackoverflow.com/questions/59625936/flutter-detect-triple-tap 
-5. I connected and set up all of the firebase necessities for basic authentication on my app using this entire youtube tutorial series (multiple hours for this step with a lot of debugging and failure because I have never done any backend coding before!): https://www.youtube.com/watch?v=LBJoY4VjECo&list=PL4cUxeGkcC9j--TKIdkb3ISfRbJeJYQwC&index=5 ![alt text] 
-6. Then I created a flow chart that the user will go through for the app to decide their personalized art gallery and the UI that goes along with it. 
+5. I connected and set up all of the firebase necessities for basic authentication on my app using this entire youtube tutorial series (multiple hours for this step with a lot of debugging and failure because I have never done any backend coding before!): https://www.youtube.com/watch?v=LBJoY4VjECo&list=PL4cUxeGkcC9j--TKIdkb3ISfRbJeJYQwC&index=5 ![alt text]()
+6. Then I created a flow chart that the user will go through for the app to decide their personalized art gallery and the UI that goes along with it. ![alt text](https://github.com/agardner31/CS4261P1/blob/master/flowchart.jpg)
 8. Joshua Lau helped me define this flow chart and upload images for the virtual gallery to be displayed on the app.
