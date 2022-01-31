@@ -5,3 +5,4 @@
 4. The next functionality was a 7-knock requirement to enter the first door of the app and to also add a knock sound to this tap action: https://stackoverflow.com/questions/59625936/flutter-detect-triple-tap 
 5. I connected and set up all of the firebase necessities for basic authentication on my app using this youtube tutorial series: https://www.youtube.com/watch?v=LBJoY4VjECo&list=PL4cUxeGkcC9j--TKIdkb3ISfRbJeJYQwC&index=5
 6. Then I created a flow chart that the user will go through for the app to decide their personalized art gallery. 
+7. Joshua Lau helped me define this flow chart and upload images for the virtual gallery to be displayed on the app.
