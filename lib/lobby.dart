@@ -3,6 +3,8 @@ import 'package:anna_app_p1/wrapper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'decisionPage.dart';
+
 class LobbyScreen extends StatelessWidget {
   static const String id = 'help';
 
@@ -24,7 +26,7 @@ class LobbySetup extends State<Lobby> {
   int questionNum = 45;
   final AuthService _auth = AuthService();
 
-  String username;
+  String username = '';
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,13 @@ class LobbySetup extends State<Lobby> {
                       } else {
                         print('signed in');
                         print(result.uid);
-
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return Decision();
+                            },
+                          ),
+                        );
                       }
                     },
                         child: Text('Enter Gallery')),

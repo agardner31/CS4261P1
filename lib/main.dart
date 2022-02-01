@@ -122,12 +122,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 110.0),
+            padding: const EdgeInsets.only(top: 130.0),
             child: Container(
               child: Neon(
                 text: 'MetaGallery',
                 color: Colors.cyan,
-                fontSize: 50,
+                fontSize: 40,
                 font: NeonFont.Membra,
                 flickeringText: true,
                 glowingDuration: const Duration(milliseconds: 150),
