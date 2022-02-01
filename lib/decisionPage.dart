@@ -2,18 +2,24 @@ import 'package:anna_app_p1/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:neon/neon.dart';
 import 'package:swipe_cards/swipe_cards.dart';
+import 'database.dart';
 import 'displayArt.dart';
 import 'package:swipe_cards/draggable_card.dart';
 import 'content.dart';
 
+
 class Decision extends StatefulWidget {
-  const Decision({Key? key}) : super(key: key);
+  //const Decision({Key? key}) : super(key: key);
+  final String uid;
+  Decision({required this.uid});
 
   @override
-  _DecisionState createState() => _DecisionState();
+  _DecisionState createState() => _DecisionState(uid: uid);
 }
 
 class _DecisionState extends State<Decision> {
+  final String uid;
+  _DecisionState({required this.uid});
   List<SwipeItem> _swipeItems = <SwipeItem>[];
   MatchEngine? _matchEngine;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
@@ -105,7 +111,8 @@ class _DecisionState extends State<Decision> {
                       ),
                     );
                   },
-                  onStackFinished: () {
+                  onStackFinished: () async {
+                    await DatabaseService(uid: uid).updateUserData(decision);
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
@@ -121,68 +128,6 @@ class _DecisionState extends State<Decision> {
                   fillSpace: true,
                 ),
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: [
-              //     ElevatedButton(
-              //         onPressed: () {
-              //           _matchEngine!.currentItem?.nope();
-              //         },
-              //         child: Text("Nope")),
-              //     ElevatedButton(
-              //         onPressed: () {
-              //           _matchEngine!.currentItem?.superLike();
-              //         },
-              //         child: Text("Superlike")),
-              //     ElevatedButton(
-              //         onPressed: () {
-              //           _matchEngine!.currentItem?.like();
-              //         },
-              //         child: Text("Like"))
-              //   ],
-              // )
             ])));
-
-
-
-      // body: Stack(
-      //     children: [
-      //       Container(
-      //         decoration: BoxDecoration(
-      //           image: DecorationImage(
-      //             image: AssetImage(
-      //               'assets/TheaterCurtains.jpg',
-      //             ),
-      //             fit: BoxFit.cover,
-      //           ),
-      //         ),
-      //       ),
-      //       Padding(
-      //         padding: const EdgeInsets.all(160.0),
-      //         child:
-      //         ToggleButtons(
-      //           isSelected: decisionArray,
-      //           color:Colors.black,
-      //           selectedColor: Colors.white,
-      //           children: [
-      //             ElevatedButton(onPressed: () {Navigator.of(context).push(
-      //               MaterialPageRoute(
-      //                 builder: (context) {
-      //                   return Display();
-      //                 },
-      //               ),
-      //             );}, child: Text('sad')),
-      //             ElevatedButton(onPressed: () {Navigator.of(context).push(
-      //               MaterialPageRoute(
-      //                 builder: (context) {
-      //                   return Display();
-      //                 },
-      //               ),
-      //             );}, child: Text('happy'))
-      //           ],
-      //         ),
-      //       )
-      //     ]
-      // )
   }
 }

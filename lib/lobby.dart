@@ -36,7 +36,7 @@ class LobbySetup extends State<Lobby> {
         body: Stack(children: [
       Container(
         decoration: BoxDecoration(
-          color: Colors.black54,
+          color: Colors.black87,
           // image: DecorationImage(
           //   image: AssetImage(
           //     'assets/TheaterCurtains.jpg',
@@ -47,84 +47,99 @@ class LobbySetup extends State<Lobby> {
       ),
       Container(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 70.00, horizontal: 50.0),
+          padding: EdgeInsets.symmetric(vertical: 110.00, horizontal: 50.0),
           child: Form(
             key: _formKey,
             child: Column(
               children: [
-                TextFormField(
-                  validator: (val) =>
-                      val!.isEmpty ? 'Email is required.' : null,
-                  onChanged: (val) {
-                    setState(() => username = val);
-                  },
-                  decoration: InputDecoration(
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter Your Email',
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    validator: (val) =>
+                        val!.isEmpty ? 'Email is required.' : null,
+                    onChanged: (val) {
+                      setState(() => username = val);
+                    },
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter Your Email',
+                    ),
                   ),
                 ),
-                TextFormField(
-                  validator: (val) => val!.isEmpty ? 'Enter a password.' : null,
-                  onChanged: (val) {
-                    setState(() => password = val);
-                  },
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter or Create New Password',
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    validator: (val) => val!.isEmpty ? 'Enter a password.' : null,
+                    onChanged: (val) {
+                      setState(() => password = val);
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter or Create New Password',
+                    ),
                   ),
                 ),
-                ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                    ),
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        dynamic result = await _auth.signInWithEmailAndPassword(
-                            username, password);
-                        if (result == null) {
-                          print('error signing in');
-                          setState(
-                              () => error = 'Incorrect authentication values.');
-                        } else {
-                          print('signed in');
-                          print(result.uid);
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return Decision();
-                              },
-                            ),
-                          );
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.black),
+                      ),
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          dynamic result = await _auth.signInWithEmailAndPassword(
+                              username, password);
+                          if (result == null) {
+                            print('error signing in');
+                            setState(
+                                () => error = 'Incorrect authentication values.');
+                          } else {
+                            print('signed in');
+                            print(result.uid);
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return Decision(uid: result.uid);
+                                },
+                              ),
+                            );
+                          }
                         }
-                      }
-                    },
-                    child: Text('Sign in')),
-                Text(error),
-                ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                    ),
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        dynamic result = await _auth
-                            .registerWithEmailAndPassword(username, password);
-                        if (result == null) {
-                          print('error signing in');
-                        } else {
-                          print('signed in');
-                          print(result.uid);
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return Decision();
-                              },
-                            ),
-                          );
+                      },
+                      child: Text('Sign in')),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(0),
+                  child: Text(error),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(0.0),
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.black),
+                      ),
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          dynamic result = await _auth
+                              .registerWithEmailAndPassword(username, password);
+                          if (result == null) {
+                            print('error signing in');
+                          } else {
+                            print('signed in');
+                            print(result.uid);
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return Decision(uid: result.uid);
+                                },
+                              ),
+                            );
+                          }
                         }
-                      }
-                    },
-                    child: Text('Enter gallery as new visitor')),
+                      },
+                      child: Text('Enter gallery as new visitor')),
+                ),
               ],
             ),
           ),
