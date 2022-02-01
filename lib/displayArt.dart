@@ -27,8 +27,13 @@ class _DisplayState extends State<Display> {
         padding: const EdgeInsets.only(
             top: 155.0, bottom: 224.0, left: 61, right: 41),
         child: Container(
-          child: Image.network(
-            getSuggestedImage(),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                getSuggestedImage(),
+              ),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),
