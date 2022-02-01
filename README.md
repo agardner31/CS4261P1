@@ -1,7 +1,8 @@
 # CS4261P1
 ## Instructions for TA
 1. Download code on environment that has flutter. 
-2. Run application (note: you may need to use the command flutter run --no-sound-null-safety given some plugins that rely on depricated packages)
+2. Run application (note: you may need to use the command flutter run --no-sound-null-safety given some plugins that rely on depricated packages, also for proper API and image retrieval from Flickr, you will need to add '<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />' in the AndroidManifest.xml file if you are running on an emulator.)
 3. You should see the entrance which says 'MetaGallery'. To enter, you must knock like this - 'knock, knock, knock, knock, knock (short pause) knock, knock" - like you would for a friend or for a secret meeting.
 4. Then, you will be prompted to enter your name. If you have come to the gallery before, then you will automatically be guided to your suggested art to admire. If you have not, then you will take a 'Buzzfeed'-like quiz in order to match you with your art piece. 
 5. The goal is to make this app much more interactive and visually pleasing in the longrun (and that the suggested art piece be an NFT), but this was my first experience with any backend, so I definitely had a big learning curve for all of the Firebase set-up etc. 
